@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Ticket-Booking</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/image.png">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ticket-Booking</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#Home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Contact">Contact us</a>
+          </li>
+        </ul>
+        <a href="/login" class="btn ml-2 my-lg-0 my-2" role="button" value="Submit" id="btnlogin">login</a>
+      </div>
+    </div>
+  </nav>
+
+  <form action="/checkUserName" method="post">
+  <section id="Home">
+    <h1 class="text-center">Online Ticket-Booking</h1>
+    <p>Effortless online Bus Ticket Booking, ensuring Swift and Secure Reservations.</p>
+      <div class="input-group">
+        <label for="mail" ></label>
+        <input type="text" id="username" name="username" class="form-control shadow-none" placeholder="User Name" required="required">
+        <button class="btn signin" type="submit">Get Started</button>
+      </div>
+  </section>
+  </form>
+
+  <section id="About">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 p-lg-5 p-2">
+          <h1>About us</h1>
+          <p>Welcome to Ticket-Booking, your trusted partner for seamless and hassle-free bus travel experiences.
+             We are dedicated to revolutionizing the way you book bus tickets, making your journey smoother, faster, and more enjoyable.</p> 
+             <br>
+             <p>Our mission is to provide travelers with a user-friendly, reliable, and efficient platform for booking bus tickets online. 
+              We strive to offer the best travel options, ensuring convenience and comfort for our users.</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 p-lg-5 p-2" >
+          <h1> </h1> <br><br>
+          <p>Join the Ticket-Booking community today and experience the convenience of online bus ticket booking. Whether you're planning a quick getaway or a long journey, we are here to make your travel plans easy and enjoyable.
+          </p>
+          <br>
+          <p>Thank you for choosing Ticket-Booking.<br> We look forward to serving you!</p>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="Contact">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 p-lg-5 p-2">
+          <img src="/static/images/pexels-kindel-media-7054550.jpg" class="img-fluid rounded float-left">
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 p-lg-5 p-2" >
+          <h1>Contact us</h1>
+          <h5>Mobile Number : 9876543210</h5>
+          <h5>Mail I'd: ticketbooking@gmail.com</h5>         
+          <h5>Live Chat: Available 24/7 on our website</h5> 
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Island+Moments&family=Poppins:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+#navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: .5rem 5rem;
+    box-shadow: 5px 5px 20px rgb(0,0,0,.5);
+    background-color: #000;
+    color: #fff !important;
+}
+
+.navbar .navbar-brand{
+    font-size: 25px;
+    font-weight: 800;
+    color: #29f700;
+}
+#navbarSupportedContent a{
+    color: #fff ;
+    border-bottom: 2px solid transparent;
+}
+  a:hover{
+    border-bottom: 2px solid  #29f700;
+}
+#navbarSupportedContent button{
+    background:#29f700;
+    border-radius: 15px;
+}
+#navbarSupportedContent #btnlogin{
+    background: #29f700;
+
+}
+section{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#Home{             
+    background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url(/static/images/pexels-pixabay-163143.jpg);
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    flex-direction: column;
+}
+#Home h1{
+    font-size: 50px;
+    text-shadow: 0px 1px 0px #fff;
+    color: #fff;
+    letter-spacing: 3px;
+}
+#Home p{
+    font-size: 18px;
+    color: #fff;
+}
+#Home .input-group{
+    width: 40%;
+    height: 45px;
+}
+.signin{
+    background-color: #29f700 !important;
+    color: #fff ;
+    box-shadow: 2px 4px 5px rgb(0,0,0,.5);
+}
+#Home input{
+    border: none;
+}
+#About{
+    background: linear-gradient(#ea1d6f,#ea1d6f);
+}
+#About h1{
+    color: #fff;
+}
+#About p{
+    color: #fff;
+}
+#Contact{
+    background-color: #76D7C4;
+}
+#Contact img{
+    height: 100%;
+}
+#Contact form{
+    display: flex;
+    flex-direction: column;
+}
+#Contact form input{
+    margin-bottom: 10px;
+}
+#Contact form button{
+    margin-top: 10px;
+}
+
+
+</style>

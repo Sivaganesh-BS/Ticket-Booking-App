@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Ticket-Booking</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/image.png">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ticket-Booking</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><h1>Admin Login</h1></a>
+          </li>
+        </ul>
+        
+        <button class="btn"><img src="/static/images/profilephoto1.jpg"  height="40px" style="background-color: green;border-radius: 50%; border: 1px solid green"></button>
+        <a href="/"><button type="button" class="btn btn-outline-primary">Logout</button></a>
+    </div>
+    </div>
+  </nav>
+
+  
+  <section id="Home">
+   
+    <div id="centerbtn" class="centerbtn">
+        <br><br>
+      <div>
+        <button onclick="openBusDetails()" type="button" class="btn btn-primary"><h1>Bus Details</h1></button>
+      </div>
+      <br>
+      <div>
+        <button onclick="openBooking()" type="button" class="btn btn-success"><h1>Bookings Details</h1></button>
+      </div>
+      <br>
+      <div>
+        <button onclick="openUserDetails()" type="button" class="btn btn-info"><h1>User Details</h1></button>
+      </div>
+      <br>
+      <div>
+        <button onclick="openAddBusDetails()" type="button" class="btn btn-warning"><h1>Add Bus Details</h1></button>
+      </div>
+    </div>
+
+
+    <!-- Bus Detail Table  -->
+    <div class="busDetails" id="busDetails">
+      <h1>Bus Details</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Bus No</th>
+            <th scope="col">Bus Type</th>
+            <th scope="col">Route</th>
+            <th scope="col">Price</th>
+            <th scope="col">Seats</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bus in buses %}
+          <tr>
+            <th scope="row">{{bus[0]}}</th>
+            <td>{{bus[1]}}</td>
+            <td>{{bus[2]}}</td>
+            <td>{{bus[3]}}</td>
+            <td>{{bus[4]}}</td>
+            <td>{{bus[5]}}</td>            
+            <td><form action="/deleteBus" method="post">
+                <input type="hidden" id="busId" value="{{bus[0]}}" name="busId">
+                <button>Delete</button>
+            </form></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <form action="" method="post">
+        <a href=""><button onclick="" type="button" class="btn btn-danger">Close</button></a>
+    </form>
+   </div>
+
+   <!-- Booking Table  -->
+    <div class="booking" id="booking">
+      <h1>Bookings Details</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Booking ID</th>
+            <th scope="col">Bus ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Total Fair</th>
+            <th scope="col">No Of Passengers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>
+            <th scope="row">{{booking[0]}}</th>
+            <td>{{booking[1]}}</td>
+            <td>{{booking[2]}}</td>
+            <td>{{booking[3]}}</td>
+            <td>{{booking[4]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <form action="" method="post">
+          <a href=""><button onclick="" type="button" class="btn btn-danger">Close</button></a>
+      </form>
+      
+    </div>
+
+    <!-- Users Table  -->
+    <div class="users" id="users">
+        <h1>Users Details</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Full Name</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Password</th>
+              <th scope="col">Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <th scope="row">{{user[0]}}</th>
+              <td>{{user[1]}}</td>
+              <td>{{user[2]}}</td>
+              <td>{{user[3]}}</td>
+              <td>{{user[4]}}</td>
+              <td>{{user[5]}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <form action="" method="post">
+            <a href=""><button onclick="" type="button" class="btn btn-danger">Close</button></a>
+        </form>
+        
+      </div>
+
+
+  </section>
+
+    <!-- Register Pop-up  -->
+    <div class="register" id="register">
+
+          <div class="col-md-12 ">
+            <form action="/addBus" method="post">
+                <h1 style="color: orangered; font-size: 50px; font-family: 'Times New Roman', Times, serif; font-weight: bolder">Add Bus</h1>
+                <div class="row mt-2">                           
+                    <div class="form-floating col-md-6">
+                        <input type="number" class="form-control" id="BusNo" name="BusNo" placeholder="">
+                        <label for="BusNo">Bus Number</label>
+                    </div>
+                    <div class="form-floating col-md-6">
+                        <input type="text" class="form-control" id="BusType" name="BusType" placeholder="">
+                        <label for="Bus Type">Bus Type</label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-floating col-md-12">
+                        <input type="text" class="form-control" id="route" name="route" placeholder="">
+                        <label for="route">Bus Route</label>
+                    </div>  
+                </div>
+                <div class="row mt-3">
+                    <div class="form-floating col-md-6">
+                        <input type="number" class="form-control" id="seat" name="seat" placeholder="">
+                        <label for="no_of_passengers">Toatl Seats</label>
+                    </div>
+                    <div class="form-floating col-md-6">
+                      <input type="number" class="form-control" id="price" name="price" placeholder="">
+                      <label for="price">Price</label>
+                  </div>
+                </div>
+               <br>
+               
+                    <a href=""><button onclick="" type="submit" class="btn btn-success">Add Bus</button></a>
+            </form><br>
+
+                <form action="" method="post">
+                    <a href=""><button onclick="" type="button" class="btn btn-warning">Close</button></a>
+                </form>
+            
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        let busDetails=document.getElementById("busDetails");
+        let booking= document.getElementById("booking");
+        let users= document.getElementById("users");
+        let register= document.getElementById("register");
+
+        function openBusDetails(){
+            busDetails.classList.add("open-busDetails");
+        }
+        function openBooking(){
+            booking.classList.add("open-booking")
+        }
+        function openUserDetails(){
+            users.classList.add("open-users")
+        }
+        function openAddBusDetails(){
+            register.classList.add("open-register")
+        }
+        
+    </script>
+</body>
+
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Island+Moments&family=Poppins:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+
+/* Bus Details Pop up  */
+.busDetails{
+    background-color: white;
+    border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility:hidden;
+    transition: 04.s,top 0.4s;
+    z-index: 100;
+}
+.open-busDetails{
+    top: 50%;
+    visibility: visible;
+    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%) scale(1);
+}
+
+
+/* Booking Table Details  */
+.booking{
+  background-color: white;
+  border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility:hidden;
+    transition: 04.s,top 0.4s;
+    z-index: 100;
+}
+.open-booking{
+    top: 50%;
+    visibility: visible;
+    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%) scale(1);
+}
+
+/* User Table Details  */
+.users{
+  background-color: white;
+  border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility:hidden;
+    transition: 04.s,top 0.4s;
+    z-index: 100;
+    width: 900px;
+}
+.open-users{
+    top: 50%;
+    visibility: visible;
+    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%) scale(1);
+}
+
+
+/* Register Bus Details  */
+.register{
+    background-color: white;
+    border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility:hidden;
+    transition: 04.s,top 0.4s;
+    z-index: 100;
+    height: 400px;
+    width: 600px;
+}
+.open-register{
+    top: 50%;
+    visibility: visible;
+    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%) scale(1);
+ 
+    display: flex;
+}
+
+
+
+
+
+
+#navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: .5rem 5rem;
+    box-shadow: 5px 5px 20px rgb(0,0,0,.5);
+    background-color: #000;
+    color: #fff !important;
+}
+
+.navbar .navbar-brand{
+    font-size: 25px;
+    font-weight: 800;
+    color: #29f700;
+}
+#navbarSupportedContent a{
+    color: #fff ;
+    border-bottom: 2px solid transparent;
+}
+  a:hover{
+    border-bottom: 2px solid  #29f700;
+}
+#navbarSupportedContent button{
+    border-radius: 15px;
+}
+#navbarSupportedContent #btnlogin{
+    background: #29f700;
+
+}
+section{
+    width: 100%;
+    min-height: 100vh;    
+}
+#Home{             
+    background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url(/static/images/pexels-pixabay-163143.jpg);
+    background-size: cover;
+    background-position: center;  
+    color: white;
+}
+
+.centerbtn{
+    
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  
+}
+
+
+
+#About{
+    background: linear-gradient(#ea1d6f,#ea1d6f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#About h1{
+    color: #fff;
+}
+#About p{
+    color: #fff;
+}
+#Contact{
+    background-color: #76D7C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#Contact img{
+    height: 100%;
+}
+#Contact form{
+    display: flex;
+    flex-direction: column;
+}
+#Contact form input{
+    margin-bottom: 10px;
+}
+#Contact form button{
+    margin-top: 10px;
+}
+
+
+
+</style>
