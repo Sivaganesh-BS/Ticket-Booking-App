@@ -26,4 +26,5 @@ class checkValidation:
 
 
 if __name__ == '__main__':
-    pass
+    res=checkValidation.emailCheck('abc@gmail.com')
+    print(res)
