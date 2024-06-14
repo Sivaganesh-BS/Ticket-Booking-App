@@ -9,7 +9,7 @@ class dbConnection:
             con = sqlite3.connect('records.db')
             cur = con.cursor()
             # User data Table
-            cur.execute("""CREATE TABLE users(
+            cur.execute("""CREATE TABLE IF NOT EXISTS users(
                         fullname text,
                         username text,
                         email text,
@@ -22,7 +22,7 @@ class dbConnection:
             print('Table User Created')
 
             #Bus Table
-            cur.execute('''CREATE TABLE bus (
+            cur.execute('''CREATE TABLE IF NOT EXISTS bus (
                                              id integer primary key AUTOINCREMENT,
                                              busno integer, 
                                              type text,
@@ -34,7 +34,7 @@ class dbConnection:
             print("Table Bus Created")
 
             # Booking Table
-            cur.execute("""CREATE TABLE booking(
+            cur.execute("""CREATE TABLE IF NOT EXISTS booking(
                                     bookingid integer Primary Key AUTOINCREMENT,
                                     id integer,
                                     username text,
@@ -103,8 +103,8 @@ class dbConnection:
             cur.execute("SELECT * FROM users")
             con.commit()
             result=cur.fetchall()
-            for i in result:
-                print(i)
+            # for i in result:
+            #     print(i)
             return result
         except Exception as e:
             return e 
@@ -122,8 +122,8 @@ class dbConnection:
             cur.execute("SELECT * FROM bus")
             con.commit()
             result=cur.fetchall()
-            for i in result:
-                print(i)
+            # for i in result:
+            #     print(i)
             return result
         except Exception as e:
             return e 
@@ -141,8 +141,8 @@ class dbConnection:
             cur.execute("SELECT * FROM booking")
             con.commit()
             result=cur.fetchall()
-            for i in result:
-                print(i)
+            # for i in result:
+            #     print(i)
             return result
         except Exception as e:
             return e 
@@ -314,8 +314,8 @@ if __name__ == '__main__':
     # obj = dbConnection()
     # res=dbConnection.updateBookingData('siva',1,45)
     # res=dbConnection.addBusData(no=1234,type='Semi-Sleeper',route='Delhi-Chennai',seats=45,price=550)
-    dbConnection.removeBusData(3)
-    dbConnection.sampleFunction()
+    # dbConnection.removeBusData(3)
+    # dbConnection.sampleFunction()
     dbConnection.printUsers()
     dbConnection.printBus()
     dbConnection.printBooking()
